@@ -64,6 +64,8 @@ class theme_settings {
             $templatecontext['disablebottomfooter'] = true;
         }
 
+        $templatecontext['year'] = date("Y");
+
         return $templatecontext;
     }
 

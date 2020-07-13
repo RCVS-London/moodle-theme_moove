@@ -39,6 +39,7 @@ use context_system;
 use core_course_list_element;
 
 defined('MOODLE_INTERNAL') || die;
+require_once($CFG->dirroot . '/mod/hvp/renderer.php');
 
 /**
  * Renderers to align Moodle's HTML with that expected by Bootstrap
@@ -848,5 +849,13 @@ class core_renderer extends \theme_boost\output\core_renderer {
         }
 
         return ' id="'. $this->body_id().'" class="'.$this->body_css_classes($additionalclasses).'"';
+    }
+
+    public function hvp_alter_styles(&$styles, $libraries, $embedType) {
+        global $CFG;
+        $styles[] = (object) array(
+            'path'    => $CFG->httpswwwroot . '/theme/moove/style/custom.css',
+            'version' => '?ver=0.0.1',
+        );
     }
 }
